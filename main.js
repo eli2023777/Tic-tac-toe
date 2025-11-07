@@ -7,8 +7,10 @@ const gameScore = document.getElementById('gameScore');
 const winOutput = document.getElementById('winOutput');
 
 // Buttons
-const play = document.getElementById('play');
-document.getElementById('clearScores').addEventListener('click',
+const playBtn = document.getElementById('playBtn');
+const clearScores = document.getElementById('clearScores');
+
+clearScores.addEventListener('click',
     () => {
         localStorage.clear();
         location.reload();
@@ -46,9 +48,11 @@ gameScore.innerHTML = localStorage.getItem('gameScore');
 
 
 // Disappring the start button after click it
-play.addEventListener('click', (event) => {
+playBtn.addEventListener('click', (event) => {
     document.querySelector('.playContainer').style.display = 'none';
     document.querySelector('.box-container').style.display = 'grid';
+    // clearScores.style.display = 'block';
+    document.querySelector('.scores').style.marginTop = '0';
 });
 
 
@@ -71,10 +75,10 @@ function start() { // start game
 
     switch (miniRandom) {
         case 1:
-            play.addEventListener('click', userTurn);
+            playBtn.addEventListener('click', userTurn);
             break;
         case 2:
-            play.addEventListener('click', gameTurn);
+            playBtn.addEventListener('click', gameTurn);
             break;
     }
 }
@@ -114,7 +118,7 @@ function addListener(box) {
 
 function gameTurn() {
     let random = Math.round(Math.floor(Math.random() * 9) + 1);
-    let a;
+    // let a;
     switch (random) {
         case 1:
             boxNumber(box1);
@@ -157,18 +161,32 @@ function gameTurn() {
     if (win === false) userTurn();
 }
 
-
+// For game turn
 function boxNumber(boxNum) {
     if (boxNum.value == '') {
         hide(boxNum);
         setTimeout(() => {
+            disableClickAndShowWaiting();
             boxNum.value = game;
-            setTimeout(check, 3000);
+            setTimeout(check, 300);
         }, 300);
+        setTimeout(() => {
+            enableClickAndHideWaiting();
+        }, 400)
     } else {
         gameTurn();
     }
+}
 
+
+function disableClickAndShowWaiting() {
+    document.body.style.pointerEvents = "none";
+    document.body.style.cursor = "wait";
+}
+
+function enableClickAndHideWaiting() {
+    document.body.style.pointerEvents = "auto";
+    document.body.style.cursor = "default";
 }
 
 
@@ -199,7 +217,7 @@ function check() { // End game (Win/lose/tie)
             yourScore.innerHTML = parseInt(yourScore.innerHTML) + 1;
             localStorage.setItem('yourScore', yourScore.innerHTML);
             winOutput.style.display = 'block'
-            winOutput.innerHTML = 'You won!'
+            winOutput.innerHTML = 'You Won!'
             winOutput.addEventListener('click', () => {
                 winOutput.style.display = 'none';
                 location.reload();
@@ -209,7 +227,7 @@ function check() { // End game (Win/lose/tie)
             gameScore.innerHTML = parseInt(gameScore.innerHTML) + 1;
             localStorage.setItem('gameScore', gameScore.innerHTML);
             winOutput.style.display = 'block'
-            winOutput.innerHTML = 'You lost!'
+            winOutput.innerHTML = 'You Lost!'
             winOutput.addEventListener('click', () => {
                 winOutput.style.display = 'none';
                 location.reload();
@@ -236,7 +254,7 @@ function check() { // End game (Win/lose/tie)
             gameScore.innerHTML = parseInt(gameScore.innerHTML) + 1;
             localStorage.setItem('gameScore', gameScore.innerHTML);
             winOutput.style.display = 'block'
-            winOutput.innerHTML = 'You lost!'
+            winOutput.innerHTML = 'You Lost!'
             winOutput.addEventListener('click', () => {
                 winOutput.style.display = 'none';
                 location.reload();
