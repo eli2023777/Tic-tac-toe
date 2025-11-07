@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+
+.outsideContainer {
+    max-width: 100vw;
+    max-height: 100vh;
+}
+
 .container {
     width: 100%;
     height: 100%;
@@ -25,10 +31,12 @@
     position: absolute;
     cursor: pointer;
     color: #fff;
+    top: 2vh;
     left: 35vw;
     align-items: center;
     justify-content: center;
-    padding: 8vh;
+    z-index: 10;
+    text-align: center;
 }
 
 .box {
@@ -47,16 +55,16 @@
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 5px;
-    width: 400px;
-    height: 400px;
-    margin: 70px auto;
+    width: 25vw;
+    height: 60vh;
+    margin: 7vh auto;
 }
 
 
 .playContainer {
     text-align: center;
-    width: 400px;
-    height: 400px;
+    width: 25vw;
+    height: 55vh;
     font-family: serif;
     color: #000;
     font-size: 2rem;
@@ -69,7 +77,7 @@
 }
 
 .startContent {
-    margin-top: 20%;
+    margin-top: 15%;
 }
 
 .startContent h2 {
@@ -82,16 +90,17 @@
 }
 
 .startContent #playBtn {
-    width: 250px;
+    width: 18vw;
+    height: 13vh;
     background-color: #015a2b;
-    font-size: 4rem;
+    font-size: 3rem;
     border: #fff 3px solid;
     border-radius: 80px;
     color: #fff;
     cursor: pointer;
     position: absolute;
-    left: 710px;
-    top: 40vh;
+    left: 43vw;
+    top: 36vh;
     z-index: 2;
     box-shadow: #000 5px 5px 5px;
 }
@@ -100,11 +109,11 @@
 
 .xBox {
     position: absolute;
-    bottom: 5vh;
+    bottom: 10vh;
     left: 45vw;
     width: 30vw;
     height: 70vh;
-    font-size: 600px;
+    font-size: 550px;
     font-family: sans-serif;
     color: #015a2ba5;
 }
@@ -132,19 +141,20 @@
 }
 
 @media screen and (max-width: 500px) {
-    .container {
+    #winOutput {
         width: 100vw;
+        height: 60vh;
+        left: 0;
+        top: 1vh;
     }
+
+
 
     .box-container {
         width: 350px;
         height: 350px;
         margin: 30px auto;
         gap: 3px;
-    }
-
-    .box {
-        font-size: 50px;
     }
 
     .buttons-box {
@@ -159,14 +169,24 @@
     }
 
     .startContent h2 {
-        font-size: 2rem;
+        width: 100vw;
+        font-size: 2.5rem;
+        left: 0;
     }
 
-    .startContent #play {
-        width: 150px;
-        left: 160px;
-        top: 250px;
-        font-size: 2rem;
+    .startContent #playBtn {
+        width: 50vw;
+        height: 10vh;
+        font-size: 2.8rem;
+        border: #fff 3px solid;
+        border-radius: 80px;
+        color: #fff;
+        cursor: pointer;
+        position: absolute;
+        left: 30vw;
+        top: 36vh;
+        z-index: 2;
+        box-shadow: #000 5px 5px 5px;
     }
 
     .xBox {
